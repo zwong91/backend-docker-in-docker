@@ -74,6 +74,14 @@ nginx-flask-mysql-db-1        "docker-entrypoint.s…"   db                  run
 nginx-flask-mysql-proxy-1     "nginx -g 'daemon of…"   proxy               running             0.0.0.0:80->80/tcp
 ```
 
+```sh Alist
+# 随机生成一个密码
+docker exec -it alist ./alist admin random
+# 手动设置一个密码,`NEW_PASSWORD`是指你需要设置的密码
+docker exec -it alist ./alist admin set NEW_PASSWORD
+
+```
+
 After the application starts, navigate to `http://localhost:80` in your web browser or run:
 ```
 $ curl localhost:80
