@@ -80,6 +80,8 @@ docker exec -it alist ./alist admin random
 # 手动设置一个密码,`NEW_PASSWORD`是指你需要设置的密码
 docker exec -it alist ./alist admin set NEW_PASSWORD
 
+docker exec -it alist bash
+
 ```
 
 After the application starts, navigate to `http://localhost:80` in your web browser or run:
