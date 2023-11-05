@@ -41,6 +41,8 @@ services:
         condition: service_healthy
 
   alist:
+    container_name: alist
+    image: 'xhofe/alist:latest'
     restart: always
     volumes:
         - '/etc/alist:/opt/alist/data'
@@ -50,19 +52,22 @@ services:
         - PUID=0
         - PGID=0
         - UMASK=022
-    container_name: alist
-    image: 'xhofe/alist:latest'
+    networks:
+      - backnet
+      - frontnet
 
   pandora:
+    image: 'pengzhile/pandora:latest'
+    container_name: pandora
     restart: unless-stopped
     ports:
         - '8899:8899'
     environment:
         - PANDORA_CLOUD=cloud
         - PANDORA_SERVER=0.0.0.0:8899
-    container_name: pandora
-    image: 'pengzhile/pandora:latest'
-
+    networks:
+      - backnet
+      - frontnet
   proxy:
     build: proxy
     restart: always
